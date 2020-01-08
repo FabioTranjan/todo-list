@@ -1,0 +1,18 @@
+#workflow {
+  margin: 10px;
+}
+
+#projects {
+ min-width: 200px;
+}
+
+#tasks {
+ width: 100%;
+ min-width: 300px;
+ margin-left: 10px;
+}
+
+#tasks .task {
+  display: flex;
+  justify-content: space-between;
+}
