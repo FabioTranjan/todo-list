@@ -1,21 +1,21 @@
 @charset "utf-8";
 @import "~bulma/bulma";
 
-#workflow {
+#main-container {
   margin: 10px;
 }
 
-#projects {
+#projects-container {
  min-width: 200px;
 }
 
-#tasks {
+#tasks-container {
  width: 100%;
  min-width: 300px;
  margin-left: 10px;
 }
 
-#tasks .task {
+#tasks-container .task {
   display: flex;
   justify-content: space-between;
 }

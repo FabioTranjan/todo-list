@@ -19,15 +19,20 @@
       </div>
     </section>
 
-    <div id="workflow" class="is-flex">
-      <div id="projects">
+    <div id="main-container" class="is-flex">
+      <div id="projects-container">
         <nav class="panel has-text-centered">
           <p class="panel-heading">
             Projects
-            <a href="#" class="panel-icon is-pulled-right is-size-4">
+            <a id="add-project" class="panel-icon is-pulled-right is-size-4">
               <i class="fas fa-plus-square" aria-hidden="true"></i>
             </a>
           </p>
+
+	  <div id="projects">
+          <!-- Projects inserted here -->
+	  </div>
+
           <!--<a class="panel-block is-active">
             <span class="panel-icon">
               <i class="fas fa-book" aria-hidden="true"></i>
@@ -43,14 +48,18 @@
         </nav>
       </div>
 
-      <div id="tasks">
-        <nav class="panel">
+      <div id="tasks-container">
+        <nav class="panel-container">
           <p class="panel-heading has-text-centered">
 	    <span>Tasks</span>
-            <a class="panel-icon is-pulled-right is-size-4">
+            <a id="add-task" class="panel-icon is-pulled-right is-size-4">
               <i class="fas fa-plus-square" aria-hidden="true"></i>
             </a>
           </p>
+
+	  <div id="tasks">
+	  <!-- Task inserted here -->
+	  </div>
 
           <!--<a class="task panel-block is-active">
             <label class="checkbox">
