@@ -1,5 +1,8 @@
+import Base from './base'
+
 function create() {
-  console.log('Create project modal')
+  Base.create('project-modal');
+  console.log('Create project modal');
 }
 
 function update() {

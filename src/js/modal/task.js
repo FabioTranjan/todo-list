@@ -1,5 +1,8 @@
+import Base from './base'
+
 function create() {
-  console.log('Create task modal')
+  Base.create('task-modal');  
+  console.log('Create task modal');
 }
 
 function update() {

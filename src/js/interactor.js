@@ -1,5 +1,5 @@
-import ProjectModal from './project_modal'
-import TaskModal from './task_modal'
+import ProjectModal from './modal/project'
+import TaskModal from './modal/task'
 
 function setListeners() {
   document.getElementById("add-project").addEventListener("click", function(e) {
