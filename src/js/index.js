@@ -5,8 +5,8 @@ import '@fortawesome/fontawesome-free/js/brands';
 
 import '../css/styles.scss';
 
-import Interactor from './interactor'
+import Controller from './controller'
 
 document.addEventListener("DOMContentLoaded", function(event) {
-  console.log(Interactor.setListeners());
+  console.log(Controller.setListeners());
 });
