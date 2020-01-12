@@ -42,7 +42,7 @@ function createModal(modalName) {
   return { modal, form };
 }
 
-function createInput(inputText, inputType) {
+function createInput(inputText, inputType, value = null) {
   console.log('Creating text input');
 
   let field = document.createElement("div");
@@ -61,7 +61,8 @@ function createInput(inputText, inputType) {
   control.appendChild(input);
   input.classList.add("input");
   input.setAttribute("type", inputType); 
-  input.setAttribute("name", inputText); 
+  input.setAttribute("name", inputText);
+  if (value) input.setAttribute("value", value);
 
   return field;
 }

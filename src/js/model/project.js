@@ -2,9 +2,20 @@ let projects = [];
 
 let Project = (title, description) => {
 
+  let getParams = () => {
+    return { title, description };
+  }
+
+  let setParams = (params) => {
+    this.title = params.title;
+    this.description = params.description;
+  }
+
   return {
     title,
-    description
+    description,
+    getParams,
+    setParams
   }
 };
 

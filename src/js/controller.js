@@ -33,12 +33,25 @@ function createProjectCallback(params) {
   ProjectModel.setView(projectModel, projectView);
 }
 
+function updateProjectCallback(project, params) {
+  console.log('Update project callback');
+
+  project.title = params.title;
+  project.description = params.description;
+  project.view.getElementsByTagName("p")[0].innerText = params.title;
+}
+
 function editProjectCallback() {
   console.log('Edit project callback');
+
+  let projectView = this.parentNode.parentNode;
+  let projectModel = ProjectModel.find(projectView);
+  ProjectViewModal.update(updateProjectCallback, projectModel);
 }
 
 function removeProjectCallback() {
   console.log('Remove project callback');
+
   let projectView = this.parentNode.parentNode;
   let projectModel = ProjectModel.find(projectView);
 
