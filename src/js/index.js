@@ -5,7 +5,7 @@ import '@fortawesome/fontawesome-free/js/brands';
 
 import '../css/styles.scss';
 
-import Controller from './controller'
+import Controller from './controller/controller'
 
 document.addEventListener("DOMContentLoaded", function(event) {
   Controller.setListeners();

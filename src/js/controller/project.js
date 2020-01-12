@@ -1,39 +1,28 @@
-import ProjectView from './view/project'
-import TaskView from './view/task'
-
-import ProjectViewModal from './view/modal/project'
-import TaskViewModal from './view/modal/task'
-
-import ProjectModel from './model/project'
-import TaskModel from './model/task'
-
+import ProjectView from '../view/project'
+import ProjectViewModal from '../view/modal/project'
+import ProjectModel from '../model/project'
 
 function setListeners() {
   document.getElementById("add-project").addEventListener("click", function(e) {
     e.preventDefault();
-    ProjectViewModal.create(createProjectCallback);
-  });
-
-  document.getElementById("add-task").addEventListener("click", function(e) {
-    e.preventDefault();
-    TaskViewModal.create();
+    ProjectViewModal.create(createCallback);
   });
 }
 
 function setupDefault() {
-  createProjectCallback({ title: 'Default', description: 'Default project' });
+  createCallback({ title: 'Default', description: 'Default project' });
 }
 
-function createProjectCallback(params) {
+function createCallback(params) {
   console.log('Create project callback');
 
   const projectModel = ProjectModel.create(params);
   ProjectModel.save(projectModel);
-  const projectView = ProjectView.create(projectModel.title, editProjectCallback, removeProjectCallback);
+  const projectView = ProjectView.create(projectModel.title, editCallback, removeCallback);
   ProjectModel.setView(projectModel, projectView);
 }
 
-function updateProjectCallback(project, params) {
+function updateCallback(project, params) {
   console.log('Update project callback');
 
   project.title = params.title;
@@ -41,22 +30,21 @@ function updateProjectCallback(project, params) {
   project.view.getElementsByTagName("p")[0].innerText = params.title;
 }
 
-function editProjectCallback() {
+function editCallback() {
   console.log('Edit project callback');
 
   let projectView = this.parentNode.parentNode;
   let projectModel = ProjectModel.find(projectView);
-  ProjectViewModal.update(updateProjectCallback, projectModel);
+  ProjectViewModal.update(updateCallback, projectModel);
 }
 
-function removeProjectCallback() {
+function removeCallback() {
   console.log('Remove project callback');
 
   let projectView = this.parentNode.parentNode;
   let projectModel = ProjectModel.find(projectView);
 
-  if (projectModel.title === 'Default') return;
-
+  if (projectModel === ProjectModel.projects[0]) return;
   ProjectModel.remove(projectModel);
 }
 

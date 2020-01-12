@@ -185,15 +185,27 @@ eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./src/
 
 /***/ }),
 
-/***/ "./src/js/controller.js":
-/*!******************************!*\
-  !*** ./src/js/controller.js ***!
-  \******************************/
+/***/ "./src/js/controller/controller.js":
+/*!*****************************************!*\
+  !*** ./src/js/controller/controller.js ***!
+  \*****************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _view_project__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./view/project */ \"./src/js/view/project.js\");\n/* harmony import */ var _view_task__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./view/task */ \"./src/js/view/task.js\");\n/* harmony import */ var _view_task__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_view_task__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _view_modal_project__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./view/modal/project */ \"./src/js/view/modal/project.js\");\n/* harmony import */ var _view_modal_task__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./view/modal/task */ \"./src/js/view/modal/task.js\");\n/* harmony import */ var _model_project__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./model/project */ \"./src/js/model/project.js\");\n/* harmony import */ var _model_task__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./model/task */ \"./src/js/model/task.js\");\n/* harmony import */ var _model_task__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_model_task__WEBPACK_IMPORTED_MODULE_5__);\n\n\n\n\n\n\n\n\n\n\nfunction setListeners() {\n  document.getElementById(\"add-project\").addEventListener(\"click\", function(e) {\n    e.preventDefault();\n    _view_modal_project__WEBPACK_IMPORTED_MODULE_2__[\"default\"].create(createProjectCallback);\n  });\n\n  document.getElementById(\"add-task\").addEventListener(\"click\", function(e) {\n    e.preventDefault();\n    _view_modal_task__WEBPACK_IMPORTED_MODULE_3__[\"default\"].create();\n  });\n}\n\nfunction setupDefault() {\n  createProjectCallback({ title: 'Default', description: 'Default project' });\n}\n\nfunction createProjectCallback(params) {\n  console.log('Create project callback');\n\n  const projectModel = _model_project__WEBPACK_IMPORTED_MODULE_4__[\"default\"].create(params);\n  _model_project__WEBPACK_IMPORTED_MODULE_4__[\"default\"].save(projectModel);\n  const projectView = _view_project__WEBPACK_IMPORTED_MODULE_0__[\"default\"].create(projectModel.title, editProjectCallback, removeProjectCallback);\n  _model_project__WEBPACK_IMPORTED_MODULE_4__[\"default\"].setView(projectModel, projectView);\n}\n\nfunction updateProjectCallback(project, params) {\n  console.log('Update project callback');\n\n  project.title = params.title;\n  project.description = params.description;\n  project.view.getElementsByTagName(\"p\")[0].innerText = params.title;\n}\n\nfunction editProjectCallback() {\n  console.log('Edit project callback');\n\n  let projectView = this.parentNode.parentNode;\n  let projectModel = _model_project__WEBPACK_IMPORTED_MODULE_4__[\"default\"].find(projectView);\n  _view_modal_project__WEBPACK_IMPORTED_MODULE_2__[\"default\"].update(updateProjectCallback, projectModel);\n}\n\nfunction removeProjectCallback() {\n  console.log('Remove project callback');\n\n  let projectView = this.parentNode.parentNode;\n  let projectModel = _model_project__WEBPACK_IMPORTED_MODULE_4__[\"default\"].find(projectView);\n\n  if (projectModel.title === 'Default') return;\n\n  _model_project__WEBPACK_IMPORTED_MODULE_4__[\"default\"].remove(projectModel);\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  setListeners,\n  setupDefault\n});\n\n\n//# sourceURL=webpack:///./src/js/controller.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _project__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./project */ \"./src/js/controller/project.js\");\n\n\nfunction setListeners() {\n  _project__WEBPACK_IMPORTED_MODULE_0__[\"default\"].setListeners();\n\n  document.getElementById(\"add-task\").addEventListener(\"click\", function(e) {\n    e.preventDefault();\n    TaskViewModal.create();\n  });\n}\n\nfunction setupDefault() {\n  _project__WEBPACK_IMPORTED_MODULE_0__[\"default\"].setupDefault();\n}\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  setListeners,\n  setupDefault\n});\n\n\n//# sourceURL=webpack:///./src/js/controller/controller.js?");
+
+/***/ }),
+
+/***/ "./src/js/controller/project.js":
+/*!**************************************!*\
+  !*** ./src/js/controller/project.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _view_project__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../view/project */ \"./src/js/view/project.js\");\n/* harmony import */ var _view_modal_project__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../view/modal/project */ \"./src/js/view/modal/project.js\");\n/* harmony import */ var _model_project__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../model/project */ \"./src/js/model/project.js\");\n\n\n\n\nfunction setListeners() {\n  document.getElementById(\"add-project\").addEventListener(\"click\", function(e) {\n    e.preventDefault();\n    _view_modal_project__WEBPACK_IMPORTED_MODULE_1__[\"default\"].create(createCallback);\n  });\n}\n\nfunction setupDefault() {\n  createCallback({ title: 'Default', description: 'Default project' });\n}\n\nfunction createCallback(params) {\n  console.log('Create project callback');\n\n  const projectModel = _model_project__WEBPACK_IMPORTED_MODULE_2__[\"default\"].create(params);\n  _model_project__WEBPACK_IMPORTED_MODULE_2__[\"default\"].save(projectModel);\n  const projectView = _view_project__WEBPACK_IMPORTED_MODULE_0__[\"default\"].create(projectModel.title, editCallback, removeCallback);\n  _model_project__WEBPACK_IMPORTED_MODULE_2__[\"default\"].setView(projectModel, projectView);\n}\n\nfunction updateCallback(project, params) {\n  console.log('Update project callback');\n\n  project.title = params.title;\n  project.description = params.description;\n  project.view.getElementsByTagName(\"p\")[0].innerText = params.title;\n}\n\nfunction editCallback() {\n  console.log('Edit project callback');\n\n  let projectView = this.parentNode.parentNode;\n  let projectModel = _model_project__WEBPACK_IMPORTED_MODULE_2__[\"default\"].find(projectView);\n  _view_modal_project__WEBPACK_IMPORTED_MODULE_1__[\"default\"].update(updateCallback, projectModel);\n}\n\nfunction removeCallback() {\n  console.log('Remove project callback');\n\n  let projectView = this.parentNode.parentNode;\n  let projectModel = _model_project__WEBPACK_IMPORTED_MODULE_2__[\"default\"].find(projectView);\n\n  if (projectModel === _model_project__WEBPACK_IMPORTED_MODULE_2__[\"default\"].projects[0]) return;\n  _model_project__WEBPACK_IMPORTED_MODULE_2__[\"default\"].remove(projectModel);\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  setListeners,\n  setupDefault\n});\n\n\n//# sourceURL=webpack:///./src/js/controller/project.js?");
 
 /***/ }),
 
@@ -205,7 +217,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _vie
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _fortawesome_fontawesome_free_js_fontawesome__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @fortawesome/fontawesome-free/js/fontawesome */ \"./node_modules/@fortawesome/fontawesome-free/js/fontawesome.js\");\n/* harmony import */ var _fortawesome_fontawesome_free_js_fontawesome__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_js_fontawesome__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _fortawesome_fontawesome_free_js_solid__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fortawesome/fontawesome-free/js/solid */ \"./node_modules/@fortawesome/fontawesome-free/js/solid.js\");\n/* harmony import */ var _fortawesome_fontawesome_free_js_solid__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_js_solid__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _fortawesome_fontawesome_free_js_regular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/fontawesome-free/js/regular */ \"./node_modules/@fortawesome/fontawesome-free/js/regular.js\");\n/* harmony import */ var _fortawesome_fontawesome_free_js_regular__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_js_regular__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _fortawesome_fontawesome_free_js_brands__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/fontawesome-free/js/brands */ \"./node_modules/@fortawesome/fontawesome-free/js/brands.js\");\n/* harmony import */ var _fortawesome_fontawesome_free_js_brands__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_js_brands__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var _css_styles_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../css/styles.scss */ \"./src/css/styles.scss\");\n/* harmony import */ var _css_styles_scss__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_css_styles_scss__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var _controller__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./controller */ \"./src/js/controller.js\");\n\n\n\n\n\n\n\n\n\ndocument.addEventListener(\"DOMContentLoaded\", function(event) {\n  _controller__WEBPACK_IMPORTED_MODULE_5__[\"default\"].setListeners();\n  _controller__WEBPACK_IMPORTED_MODULE_5__[\"default\"].setupDefault();\n});\n\n\n//# sourceURL=webpack:///./src/js/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _fortawesome_fontawesome_free_js_fontawesome__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @fortawesome/fontawesome-free/js/fontawesome */ \"./node_modules/@fortawesome/fontawesome-free/js/fontawesome.js\");\n/* harmony import */ var _fortawesome_fontawesome_free_js_fontawesome__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_js_fontawesome__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _fortawesome_fontawesome_free_js_solid__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fortawesome/fontawesome-free/js/solid */ \"./node_modules/@fortawesome/fontawesome-free/js/solid.js\");\n/* harmony import */ var _fortawesome_fontawesome_free_js_solid__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_js_solid__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _fortawesome_fontawesome_free_js_regular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/fontawesome-free/js/regular */ \"./node_modules/@fortawesome/fontawesome-free/js/regular.js\");\n/* harmony import */ var _fortawesome_fontawesome_free_js_regular__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_js_regular__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _fortawesome_fontawesome_free_js_brands__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/fontawesome-free/js/brands */ \"./node_modules/@fortawesome/fontawesome-free/js/brands.js\");\n/* harmony import */ var _fortawesome_fontawesome_free_js_brands__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_js_brands__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var _css_styles_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../css/styles.scss */ \"./src/css/styles.scss\");\n/* harmony import */ var _css_styles_scss__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_css_styles_scss__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var _controller_controller__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./controller/controller */ \"./src/js/controller/controller.js\");\n\n\n\n\n\n\n\n\n\ndocument.addEventListener(\"DOMContentLoaded\", function(event) {\n  _controller_controller__WEBPACK_IMPORTED_MODULE_5__[\"default\"].setListeners();\n  _controller_controller__WEBPACK_IMPORTED_MODULE_5__[\"default\"].setupDefault();\n});\n\n\n//# sourceURL=webpack:///./src/js/index.js?");
 
 /***/ }),
 
@@ -218,17 +230,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _for
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\nlet projects = [];\n\nlet Project = (title, description) => {\n\n  let getParams = () => {\n    return { title, description };\n  }\n\n  let setParams = (params) => {\n    undefined.title = params.title;\n    undefined.description = params.description;\n  }\n\n  return {\n    title,\n    description,\n    getParams,\n    setParams\n  }\n};\n\nfunction create(params) {\n  console.log('Creating project model');\n  return Project(params.title, params.description);\n}\n\nfunction save(project) {\n  console.log('Saving project model');\n  projects.push(project);\n  console.log(projects);\n}\n\nfunction setView(project, view) {\n  console.log('Saving project view to model');\n  project.view = view\n}\n\nfunction find(view) {\n  console.log('Finding project model');\n  return projects.find(project => { return project.view === view }); \n}\n\nfunction remove(project) {\n  console.log('Removing project model: ' + project.title);\n  project.view.remove();\n  let index = projects.indexOf(project);\n  projects.splice(index, 1);\n  project = null;\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  projects,\n  setView,\n  create,\n  save,\n  find,\n  remove\n});\n\n\n//# sourceURL=webpack:///./src/js/model/project.js?");
-
-/***/ }),
-
-/***/ "./src/js/model/task.js":
-/*!******************************!*\
-  !*** ./src/js/model/task.js ***!
-  \******************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("const Task = (title, description, dueDate, priority) => {\n  const getTitle = () => title;\n  const getDescription = () => description;\n  const getDueDate = () => dueDate;\n  const getPriority = () => priority;\n\n\n  return {\n    getTitle,\n    getDescription,\n    getDueDate,\n    getPriority\n  }\n};\n\n\n//# sourceURL=webpack:///./src/js/model/task.js?");
 
 /***/ }),
 
@@ -256,18 +257,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _bas
 
 /***/ }),
 
-/***/ "./src/js/view/modal/task.js":
-/*!***********************************!*\
-  !*** ./src/js/view/modal/task.js ***!
-  \***********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _base__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./base */ \"./src/js/view/modal/base.js\");\n\n\nfunction create() {\n  let form = _base__WEBPACK_IMPORTED_MODULE_0__[\"default\"].create('task-modal');  \n  console.log('Create task modal form');\n}\n\nfunction update() {\n  console.log('Update task modal form');\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  create,\n  update\n});\n\n\n\n//# sourceURL=webpack:///./src/js/view/modal/task.js?");
-
-/***/ }),
-
 /***/ "./src/js/view/project.js":
 /*!********************************!*\
   !*** ./src/js/view/project.js ***!
@@ -277,17 +266,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _bas
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\nfunction create(projectName, editCallback, removeCallback) {\n  console.log('Creating project view');\n\n  let projects = document.getElementById(\"projects\");\n\n  let block = document.createElement(\"a\");\n  projects.appendChild(block);\n  block.classList.add(\"project\");\n  block.classList.add(\"panel-block\");\n\n  let iconPanel = document.createElement(\"span\");\n  block.appendChild(iconPanel);\n  iconPanel.classList.add(\"panel-icon\");\n\n  let icon = document.createElement(\"i\");\n  iconPanel.appendChild(icon);\n  icon.classList.add(\"fas\");\n  icon.classList.add(\"fa-book\");\n  icon.setAttribute(\"aria-hidden\", \"true\");\n\n  let text = document.createElement(\"p\");\n  block.appendChild(text);\n  text.innerText = projectName;\n\n  let editIcons = document.createElement(\"div\");\n  block.appendChild(editIcons);\n  editIcons.classList.add(\"project-icons\");\n\n  let editIconPanel = document.createElement(\"span\");\n  editIcons.appendChild(editIconPanel);\n  editIconPanel.classList.add(\"panel-icon\");\n\n  let editIcon = document.createElement(\"i\");\n  editIconPanel.appendChild(editIcon);\n  editIcon.classList.add(\"fas\");\n  editIcon.classList.add(\"fa-edit\");\n  editIcon.setAttribute(\"aria-hidden\", \"true\");\n\n  let removeIconPanel = document.createElement(\"span\");\n  editIcons.appendChild(removeIconPanel);\n  removeIconPanel.classList.add(\"panel-icon\");\n\n  let removeIcon = document.createElement(\"i\");\n  removeIconPanel.appendChild(removeIcon);\n  removeIcon.classList.add(\"fas\");\n  removeIcon.classList.add(\"fa-trash-alt\");\n  removeIcon.setAttribute(\"aria-hidden\", \"true\");\n\n  editIconPanel.addEventListener(\"click\", function(e) {\n    e.preventDefault();\n    editCallback.call(this);\n  });\n\n  removeIconPanel.addEventListener(\"click\", function(e) {\n    e.preventDefault();\n    removeCallback.call(this);\n  });\n\n  return block;\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  create\n});\n\n\n//# sourceURL=webpack:///./src/js/view/project.js?");
-
-/***/ }),
-
-/***/ "./src/js/view/task.js":
-/*!*****************************!*\
-  !*** ./src/js/view/task.js ***!
-  \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("\n\n//# sourceURL=webpack:///./src/js/view/task.js?");
 
 /***/ })
 
