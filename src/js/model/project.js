@@ -30,9 +30,10 @@ function find(view) {
 }
 
 function remove(project) {
-  console.log('Removing project model');
+  console.log('Removing project model: ' + project.title);
   project.view.remove();
-  projects.shift(project);
+  let index = projects.indexOf(project);
+  projects.splice(index, 1);
   project = null;
 }
 
