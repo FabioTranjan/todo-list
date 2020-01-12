@@ -1,4 +1,4 @@
-function create(projectName) {
+function create(projectName, editCallback, removeCallback) {
   console.log('Creating project view');
 
   let projects = document.getElementById("projects");
@@ -45,6 +45,16 @@ function create(projectName) {
   removeIcon.classList.add("fas");
   removeIcon.classList.add("fa-trash-alt");
   removeIcon.setAttribute("aria-hidden", "true");
+
+  editIconPanel.addEventListener("click", function(e) {
+    e.preventDefault();
+    editCallback.call(this);
+  });
+
+  removeIconPanel.addEventListener("click", function(e) {
+    e.preventDefault();
+    removeCallback.call(this);
+  });
 
   return block;
 }

@@ -8,5 +8,6 @@ import '../css/styles.scss';
 import Controller from './controller'
 
 document.addEventListener("DOMContentLoaded", function(event) {
-  console.log(Controller.setListeners());
+  Controller.setListeners();
+  Controller.setupDefault();
 });

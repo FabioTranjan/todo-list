@@ -20,15 +20,34 @@ function setListeners() {
   });
 }
 
+function setupDefault() {
+  createProjectCallback({ title: 'Default', description: 'Default project' });
+}
+
 function createProjectCallback(params) {
   console.log('Create project callback');
 
   const projectModel = ProjectModel.create(params);
   ProjectModel.save(projectModel);
-  const projectView = ProjectView.create(projectModel.title);
+  const projectView = ProjectView.create(projectModel.title, editProjectCallback, removeProjectCallback);
   ProjectModel.setView(projectModel, projectView);
 }
 
+function editProjectCallback() {
+  console.log('Edit project callback');
+}
+
+function removeProjectCallback() {
+  console.log('Remove project callback');
+  let projectView = this.parentNode.parentNode;
+  let projectModel = ProjectModel.find(projectView);
+
+  if (projectModel.title === 'Default') return;
+
+  ProjectModel.remove(projectModel);
+}
+
 export default {
-  setListeners
+  setListeners,
+  setupDefault
 }

@@ -7115,12 +7115,15 @@ label.panel-block {
 #tasks-container .task {
   display: flex;
   justify-content: space-between;
-  align-items: baseline; }
+  align-items: center; }
 
 #projects-container .project {
   display: flex;
   justify-content: space-between;
-  align-items: baseline; }
+  align-items: center; }
+
+#projects-container .project-icons {
+  height: 15px; }
 
 .box {
   max-width: 50%;
