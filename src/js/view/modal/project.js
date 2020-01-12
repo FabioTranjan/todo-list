@@ -1,31 +1,31 @@
-import Base from './base'
+import ModalBase from './base'
 
-function create(callback) {
+function create(submitCallback) {
   console.log('Create project modal form');
-  let projectModal = Base.createModal('project-modal');
+  let modal = ModalBase.createModal('project-modal');
 
-  let titleInput = Base.createInput('Title', 'text');
-  projectModal.form.appendChild(titleInput);
+  let titleInput = ModalBase.createInput('Title', 'text');
+  modal.form.appendChild(titleInput);
 
-  let descriptionInput = Base.createInput('Description', 'text');
-  projectModal.form.appendChild(descriptionInput);
+  let descriptionInput = ModalBase.createInput('Description', 'text');
+  modal.form.appendChild(descriptionInput);
 
-  let buttons = Base.createButtons();
-  projectModal.form.appendChild(buttons.field);
+  let buttons = ModalBase.createButtons();
+  modal.form.appendChild(buttons.field);
 
   buttons.submit.addEventListener("click", function(e) {
     e.preventDefault();
 
-    projectModal.modal.classList.remove("is-active");
-    let formData = new FormData(projectModal.form);
+    modal.modal.classList.remove("is-active");
+    let formData = new FormData(modal.form);
     let params = { title: formData.get('Title'),
 	           description: formData.get('Description') };
-    callback(params);
+    submitCallback(params);
   });
 
   buttons.cancel.addEventListener("click", function(e) {
     e.preventDefault();
-    projectModal.modal.classList.remove("is-active");
+    modal.modal.classList.remove("is-active");
   });
 }
 

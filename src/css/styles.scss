@@ -18,6 +18,13 @@
 #tasks-container .task {
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
+}
+
+#projects-container .project {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
 }
 
 .box {

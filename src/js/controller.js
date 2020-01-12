@@ -1,21 +1,32 @@
-import ProjectModal from './view/modal/project'
-import TaskModal from './view/modal/task'
+import ProjectView from './view/project'
+import TaskView from './view/task'
+
+import ProjectViewModal from './view/modal/project'
+import TaskViewModal from './view/modal/task'
+
+import ProjectModel from './model/project'
+import TaskModel from './model/task'
+
 
 function setListeners() {
   document.getElementById("add-project").addEventListener("click", function(e) {
     e.preventDefault();
-    ProjectModal.create(createProjectCallback);
+    ProjectViewModal.create(createProjectCallback);
   });
 
   document.getElementById("add-task").addEventListener("click", function(e) {
     e.preventDefault();
-    TaskModal.create();
+    TaskViewModal.create();
   });
 }
 
 function createProjectCallback(params) {
   console.log('Create project callback');
-  console.log(params);
+
+  const projectModel = ProjectModel.create(params);
+  ProjectModel.save(projectModel);
+  const projectView = ProjectView.create(projectModel.title);
+  ProjectModel.setView(projectModel, projectView);
 }
 
 export default {

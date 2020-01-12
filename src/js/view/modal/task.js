@@ -1,7 +1,7 @@
-import Base from './base'
+import ModalBase from './base'
 
 function create() {
-  let form = Base.create('task-modal');  
+  let form = ModalBase.create('task-modal');  
   console.log('Create task modal form');
 }
 
