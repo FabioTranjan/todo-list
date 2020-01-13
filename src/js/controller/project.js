@@ -18,7 +18,8 @@ function createCallback(params) {
 
   const projectModel = ProjectModel.create(params);
   ProjectModel.save(projectModel);
-  const projectView = ProjectView.create(projectModel.title, editCallback, removeCallback);
+  const callbacks = { edit: editCallback, remove: removeCallback };
+  const projectView = ProjectView.create(projectModel.title, callbacks);
   ProjectModel.setView(projectModel, projectView);
 }
 

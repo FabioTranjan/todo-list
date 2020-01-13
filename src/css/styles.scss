@@ -5,6 +5,11 @@
   margin: 10px;
 }
 
+.box {
+  max-width: 50%;
+  margin: 0 auto;
+}
+
 #projects-container {
  min-width: 200px;
 }
@@ -31,7 +36,7 @@
   height: 15px;
 }
 
-.box {
-  max-width: 50%;
-  margin: 0 auto;
+#tasks-container .task-icons {
+  height: 15px;
 }
+

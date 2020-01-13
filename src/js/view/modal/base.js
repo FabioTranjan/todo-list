@@ -45,6 +45,42 @@ function createModal(modalName) {
 function createInput(inputText, inputType, value = null) {
   console.log('Creating text input');
 
+  let control = createBaseInput(inputText);
+
+  let input = document.createElement("input");
+  control.appendChild(input);
+  input.classList.add("input");
+  input.setAttribute("type", inputType); 
+  input.setAttribute("name", inputText);
+  if (value) input.setAttribute("value", value);
+
+  return control.parentNode;
+}
+
+function createDropdown(inputText, options, value = null) {
+  console.log('Creating dropdown input');
+
+  let control = createBaseInput(inputText);
+
+  let selectDiv = document.createElement("div");
+  control.appendChild(selectDiv);
+  selectDiv.classList.add("select");
+
+  let select = document.createElement("select");
+  selectDiv.appendChild(select);
+
+  options.forEach(function(el) {
+    let option = document.createElement("option");
+    select.appendChild(option);
+    option.innerText = el;
+  });
+
+  return control.parentNode;
+}
+
+function createBaseInput(inputText) {
+  console.log('Creating base input');
+
   let field = document.createElement("div");
   field.classList.add("field");
   
@@ -57,14 +93,7 @@ function createInput(inputText, inputType, value = null) {
   field.appendChild(control);
   control.classList.add("control");
 
-  let input = document.createElement("input");
-  control.appendChild(input);
-  input.classList.add("input");
-  input.setAttribute("type", inputType); 
-  input.setAttribute("name", inputText);
-  if (value) input.setAttribute("value", value);
-
-  return field;
+  return control;
 }
 
 function createButtons() {
@@ -98,8 +127,32 @@ function createButtons() {
   return { field: field, submit: submitButton, cancel: cancelButton };
 }
 
+function createIcon(iconName) {
+  let icon = document.createElement("i");
+  icon.classList.add("fas");
+  icon.classList.add(iconName);
+  icon.setAttribute("aria-hidden", "true");
+  return icon;
+}
+
+function createPanelIcon() {
+  let iconPanel = document.createElement("span");
+  iconPanel.classList.add("panel-icon");
+  return iconPanel;
+}
+
+function createPanelBlock() {
+  let panelBlock = document.createElement("a");
+  panelBlock.classList.add("panel-block");
+  return panelBlock;
+}
+
 export default {
   createModal,
   createInput,
-  createButtons
+  createDropdown,
+  createButtons,
+  createIcon,
+  createPanelIcon,
+  createPanelBlock
 }

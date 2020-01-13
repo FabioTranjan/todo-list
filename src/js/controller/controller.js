@@ -1,12 +1,9 @@
 import ProjectController from './project'
+import TaskController from './task'
 
 function setListeners() {
   ProjectController.setListeners();
-
-  document.getElementById("add-task").addEventListener("click", function(e) {
-    e.preventDefault();
-    TaskViewModal.create();
-  });
+  TaskController.setListeners();
 }
 
 function setupDefault() {

@@ -1,22 +1,19 @@
-function create(projectName, editCallback, removeCallback) {
+import Base from './modal/base'
+
+function create(projectName, callbacks) {
   console.log('Creating project view');
 
   let projects = document.getElementById("projects");
 
-  let block = document.createElement("a");
+  let block = Base.createPanelBlock();
   projects.appendChild(block);
   block.classList.add("project");
-  block.classList.add("panel-block");
 
-  let iconPanel = document.createElement("span");
+  let iconPanel = Base.createPanelIcon();
   block.appendChild(iconPanel);
-  iconPanel.classList.add("panel-icon");
 
-  let icon = document.createElement("i");
-  iconPanel.appendChild(icon);
-  icon.classList.add("fas");
-  icon.classList.add("fa-book");
-  icon.setAttribute("aria-hidden", "true");
+  let bookIcon = Base.createIcon('fa-book');
+  iconPanel.appendChild(bookIcon);
 
   let text = document.createElement("p");
   block.appendChild(text);
@@ -26,34 +23,26 @@ function create(projectName, editCallback, removeCallback) {
   block.appendChild(editIcons);
   editIcons.classList.add("project-icons");
 
-  let editIconPanel = document.createElement("span");
+  let editIconPanel = Base.createPanelIcon();
   editIcons.appendChild(editIconPanel);
-  editIconPanel.classList.add("panel-icon");
 
-  let editIcon = document.createElement("i");
+  let editIcon = Base.createIcon('fa-edit');
   editIconPanel.appendChild(editIcon);
-  editIcon.classList.add("fas");
-  editIcon.classList.add("fa-edit");
-  editIcon.setAttribute("aria-hidden", "true");
 
-  let removeIconPanel = document.createElement("span");
+  let removeIconPanel = Base.createPanelIcon();
   editIcons.appendChild(removeIconPanel);
-  removeIconPanel.classList.add("panel-icon");
 
-  let removeIcon = document.createElement("i");
+  let removeIcon = Base.createIcon('fa-trash-alt');
   removeIconPanel.appendChild(removeIcon);
-  removeIcon.classList.add("fas");
-  removeIcon.classList.add("fa-trash-alt");
-  removeIcon.setAttribute("aria-hidden", "true");
 
   editIconPanel.addEventListener("click", function(e) {
     e.preventDefault();
-    editCallback.call(this);
+    callbacks.edit.call(this);
   });
 
   removeIconPanel.addEventListener("click", function(e) {
     e.preventDefault();
-    removeCallback.call(this);
+    callbacks.remove.call(this);
   });
 
   return block;

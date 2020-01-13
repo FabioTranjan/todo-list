@@ -6,16 +6,10 @@ let Project = (title, description) => {
     return { title, description };
   }
 
-  let setParams = (params) => {
-    this.title = params.title;
-    this.description = params.description;
-  }
-
   return {
     title,
     description,
-    getParams,
-    setParams
+    getParams
   }
 };
 

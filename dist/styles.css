@@ -7104,6 +7104,10 @@ label.panel-block {
 #main-container {
   margin: 10px; }
 
+.box {
+  max-width: 50%;
+  margin: 0 auto; }
+
 #projects-container {
   min-width: 200px; }
 
@@ -7125,7 +7129,6 @@ label.panel-block {
 #projects-container .project-icons {
   height: 15px; }
 
-.box {
-  max-width: 50%;
-  margin: 0 auto; }
+#tasks-container .task-icons {
+  height: 15px; }
 
