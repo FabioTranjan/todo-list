@@ -1,5 +1,3 @@
-let tasks = [];
-
 const Task = (title, description, dueDate, priority) => {
   let priorities = ['low','medium','high','urgent']
 
@@ -21,14 +19,12 @@ function create(params) {
   return Task(params.title, params.description, params.dueDate, params.priority);
 }
 
-function save(task) {
-  console.log('Saving project model');
-  tasks.push(task);
-  console.log(tasks); 
+function setView(task, view) {
+  console.log('Setting task view to project');
+  task.view = view;
 }
 
 export default {
-  tasks,
   create,
-  save
+  setView
 }

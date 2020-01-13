@@ -1,6 +1,8 @@
 let projects = [];
+let activeProject = null;
 
 let Project = (title, description) => {
+  let tasks = [];
 
   let getParams = () => {
     return { title, description };
@@ -9,7 +11,8 @@ let Project = (title, description) => {
   return {
     title,
     description,
-    getParams
+    getParams,
+    tasks
   }
 };
 
@@ -26,7 +29,7 @@ function save(project) {
 
 function setView(project, view) {
   console.log('Saving project view to model');
-  project.view = view
+  project.view = view;
 }
 
 function find(view) {
@@ -42,11 +45,36 @@ function remove(project) {
   project = null;
 }
 
+function addTask(task) {
+  console.log('Adding task to project');
+  activeProject.tasks.push(task);
+  console.log(activeProject.tasks);
+}
+
+function removeTask(task) {
+  console.log('Removing task from project');
+  let index = activeProject.tasks.indexOf(task);
+  activeProject.tasks.splice(index, 1);
+  task = null;
+}
+
+function setActive(project) {
+  activeProject = project;
+}
+
+function getActive() {
+  return activeProject;
+}
+
 export default {
   projects,
   setView,
   create,
   save,
   find,
-  remove
+  remove,
+  addTask,
+  removeTask,
+  setActive,
+  getActive
 }

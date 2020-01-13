@@ -9,6 +9,7 @@ function setListeners() {
 function setupDefault() {
   ProjectController.setupDefault();
 }
+
 export default {
   setListeners,
   setupDefault

@@ -45,6 +45,11 @@ function create(projectName, callbacks) {
     callbacks.remove.call(this);
   });
 
+  block.addEventListener("click", function (e) {
+    e.preventDefault();
+    callbacks.active.call(this);
+  });
+
   return block;
 }
 

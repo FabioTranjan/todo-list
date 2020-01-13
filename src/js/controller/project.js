@@ -11,6 +11,17 @@ function setListeners() {
 
 function setupDefault() {
   createCallback({ title: 'Default', description: 'Default project' });
+  let defaultProject = ProjectModel.projects[0]
+  setActive(defaultProject);
+}
+
+function setActive(project) {
+  let current = ProjectModel.getActive();
+  if (current) {
+    current.view.classList.remove("is-active");
+  }
+  project.view.classList.add("is-active"); 
+  ProjectModel.setActive(project);
 }
 
 function createCallback(params) {
@@ -18,7 +29,7 @@ function createCallback(params) {
 
   const projectModel = ProjectModel.create(params);
   ProjectModel.save(projectModel);
-  const callbacks = { edit: editCallback, remove: removeCallback };
+  const callbacks = { edit: editCallback, remove: removeCallback, active: activeCallback };
   const projectView = ProjectView.create(projectModel.title, callbacks);
   ProjectModel.setView(projectModel, projectView);
 }
@@ -49,7 +60,23 @@ function removeCallback() {
   ProjectModel.remove(projectModel);
 }
 
+function activeCallback() {
+  console.log('Set active project');
+ 
+  let view = this;
+  let project = ProjectModel.find(view);
+  setActive(project);
+}
+
+function setTask(task) {
+  console.log('Set task to active project');
+
+  let activeProject = ProjectModel.getActive();
+  activeProject.addTask(task);
+}
+
 export default {
   setListeners,
-  setupDefault
+  setupDefault,
+  setTask
 }

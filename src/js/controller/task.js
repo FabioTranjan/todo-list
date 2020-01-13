@@ -2,7 +2,9 @@ import TaskView from '../view/task'
 import TaskViewModal from '../view/modal/task'
 import TaskModel from '../model/task'
 
-function setListeners() {
+import ProjectModel from '../model/project'
+
+function setListeners(saveTaskCallback) {
   document.getElementById("add-task").addEventListener("click", function(e) {
     e.preventDefault();
     TaskViewModal.create(createCallback);
@@ -13,10 +15,11 @@ function createCallback(params) {
   console.log('Create task callback');
 
   const taskModel = TaskModel.create(params);
-  TaskModel.save(taskModel);
   const callbacks = { edit: editCallback, remove: removeCallback, show: showCallback };
   const taskView = TaskView.create(taskModel.title, callbacks);
-  //ProjectModel.setView(projectModel, projectView);
+  TaskModel.setView(taskModel, taskView);
+
+  ProjectModel.addTask(taskModel);
 }
 
 function updateCallback(project, params) {
