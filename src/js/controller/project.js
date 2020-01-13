@@ -18,9 +18,9 @@ function setupDefault() {
 function setActive(project) {
   let current = ProjectModel.getActive();
   if (current) {
-    current.view.classList.remove("is-active");
+    ProjectView.setActive(current, false);
   }
-  project.view.classList.add("is-active"); 
+  ProjectView.setActive(project, true);
   ProjectModel.setActive(project);
 }
 

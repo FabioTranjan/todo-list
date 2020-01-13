@@ -59,6 +59,7 @@ function removeTask(task) {
 }
 
 function setActive(project) {
+  console.log('Setting active project');
   activeProject = project;
 }
 

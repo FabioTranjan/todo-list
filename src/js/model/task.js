@@ -24,7 +24,17 @@ function setView(task, view) {
   task.view = view;
 }
 
+function hide(task) {
+  
+}
+
+function show(task) {
+
+}
+
 export default {
   create,
-  setView
+  setView,
+  hide,
+  show
 }

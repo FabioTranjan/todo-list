@@ -53,6 +53,21 @@ function create(projectName, callbacks) {
   return block;
 }
 
+function setActive(project, isActive) {
+  if (isActive) {
+    project.view.classList.add('is-active');
+    project.tasks.forEach(function(task) {
+      task.view.style.display = 'flex';
+    });
+  } else {
+    project.view.classList.remove('is-active');
+    project.tasks.forEach(function(task) {
+      task.view.style.display = 'none';
+    });
+  }
+}
+
 export default {
-  create
+  create,
+  setActive
 }
