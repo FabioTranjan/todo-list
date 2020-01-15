@@ -7108,6 +7108,9 @@ label.panel-block {
   max-width: 50%;
   margin: 0 auto; }
 
+.completed {
+  color: green; }
+
 #projects-container {
   min-width: 200px; }
 

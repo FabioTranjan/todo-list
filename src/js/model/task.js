@@ -1,5 +1,6 @@
 const Task = (title, description, dueDate, priority) => {
   let priorities = ['low','medium','high','urgent']
+  let completed = false;
 
   let getParams = () => {
     return { title, description, dueDate, priority };
@@ -10,6 +11,7 @@ const Task = (title, description, dueDate, priority) => {
     description,
     dueDate,
     priority,
+    completed,
     getParams
   }
 };
@@ -24,17 +26,7 @@ function setView(task, view) {
   task.view = view;
 }
 
-function hide(task) {
-  
-}
-
-function show(task) {
-
-}
-
 export default {
   create,
-  setView,
-  hide,
-  show
+  setView
 }

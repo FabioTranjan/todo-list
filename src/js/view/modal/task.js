@@ -32,11 +32,20 @@ function createForm(submitCallback, task = null) {
   modal.form.appendChild(descriptionInput);
 
   let dueDateInput;
-  dueDateInput = ModalBase.createInput('Date', 'date');
+  if (task) {
+    dueDateInput = ModalBase.createInput('Date', 'date', task.dueDate);
+  } else {
+    dueDateInput = ModalBase.createInput('Date', 'date');
+  }
   modal.form.appendChild(dueDateInput);
 
   let priorities = ['low','medium','high','urgent'];
-  let priorityInput = ModalBase.createDropdown('Priority', priorities);
+  let priorityInput;
+  if (task) {
+    priorityInput = ModalBase.createDropdown('Priority', priorities, task.priority);
+  } else {
+    priorityInput = ModalBase.createDropdown('Priority', priorities);
+  }
   modal.form.appendChild(priorityInput);
 
   let buttons = ModalBase.createButtons();

@@ -37,25 +37,35 @@ function find(view) {
   return projects.find(project => { return project.view === view }); 
 }
 
+function findTask(view) {
+  console.log('Finding task model');
+  return activeProject.tasks.find(task => { return task.view === view });
+}
+
+function removeTask(task, project = activeProject) {
+  console.log('Removing task model');
+  task.view.remove();
+  let index = project.tasks.indexOf(task);
+  project.tasks.splice(index, 1);
+  task = null;
+}
+
 function remove(project) {
   console.log('Removing project model: ' + project.title);
+  project.tasks.forEach(function (task) {
+    removeTask(task, project); 
+  });
   project.view.remove();
   let index = projects.indexOf(project);
   projects.splice(index, 1);
   project = null;
+  activeProject = projects[index-1];
 }
 
 function addTask(task) {
   console.log('Adding task to project');
   activeProject.tasks.push(task);
   console.log(activeProject.tasks);
-}
-
-function removeTask(task) {
-  console.log('Removing task from project');
-  let index = activeProject.tasks.indexOf(task);
-  activeProject.tasks.splice(index, 1);
-  task = null;
 }
 
 function setActive(project) {
@@ -77,5 +87,7 @@ export default {
   addTask,
   removeTask,
   setActive,
-  getActive
+  getActive,
+  findTask,
+  removeTask
 }

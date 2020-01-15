@@ -9,11 +9,11 @@ function create(projectName, callbacks) {
   projects.appendChild(block);
   block.classList.add("project");
 
-  let iconPanel = Base.createPanelIcon();
-  block.appendChild(iconPanel);
+  let bookIconPanel = Base.createPanelIcon();
+  block.appendChild(bookIconPanel);
 
   let bookIcon = Base.createIcon('fa-book');
-  iconPanel.appendChild(bookIcon);
+  bookIconPanel.appendChild(bookIcon);
 
   let text = document.createElement("p");
   block.appendChild(text);
@@ -45,9 +45,9 @@ function create(projectName, callbacks) {
     callbacks.remove.call(this);
   });
 
-  block.addEventListener("click", function (e) {
+  bookIconPanel.addEventListener("click", function (e) {
     e.preventDefault();
-    callbacks.active.call(this);
+    callbacks.active.call(this.parentNode);
   });
 
   return block;

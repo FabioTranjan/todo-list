@@ -26,27 +26,31 @@ function create(taskName, callbacks) {
   block.appendChild(taskIcons);
   taskIcons.classList.add("task-icons");
 
-  let showPanel = Base.createPanelIcon();
-  taskIcons.appendChild(showPanel);
-
-  let showIcon = Base.createIcon('fa-angle-down');
-  showPanel.appendChild(showIcon);
+  let exclamationPanel = Base.createPanelIcon();
+  taskIcons.appendChild(exclamationPanel);
+  let exclamationIcon = Base.createIcon('fa-exclamation-circle');
+  exclamationPanel.appendChild(exclamationIcon);
 
   let editPanel = Base.createPanelIcon();
   taskIcons.appendChild(editPanel);
-
   let editIcon = Base.createIcon('fa-edit');
   editPanel.appendChild(editIcon);
 
   let removePanel = Base.createPanelIcon();
   taskIcons.appendChild(removePanel);
-
   let removeIcon = Base.createIcon('fa-trash-alt');
   removePanel.appendChild(removeIcon);
 
-  showPanel.addEventListener("click", function(e) {
+  checkboxInput.addEventListener("change", function(e) {
     e.preventDefault();
-    callbacks.show.call(this);
+    callbacks.completed.call(this);
+    if (this.checked) {
+      taskTitle.style.textDecoration = 'line-through';
+      exclamationPanel.innerHTML = '';
+    } else {
+      taskTitle.style.textDecoration = 'none';
+      exclamationPanel.appendChild(exclamationIcon);
+    }
   });
 
   editPanel.addEventListener("click", function(e) {

@@ -67,10 +67,14 @@ function createDropdown(inputText, options, value = null) {
   selectDiv.classList.add("select");
 
   let select = document.createElement("select");
+  select.setAttribute("name", inputText);
   selectDiv.appendChild(select);
 
   options.forEach(function(el) {
     let option = document.createElement("option");
+    if (value && el === value) {
+      option.selected = 'selected';
+    }
     select.appendChild(option);
     option.innerText = el;
   });
