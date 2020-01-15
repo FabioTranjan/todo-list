@@ -52,9 +52,13 @@ function removeTask(task, project = activeProject) {
 
 function remove(project) {
   console.log('Removing project model: ' + project.title);
+  console.log(project.tasks);
   project.tasks.forEach(function (task) {
-    removeTask(task, project); 
+    console.log('Task title: ' + task.title);
+    task.view.remove();
+    task = null;
   });
+  project.tasks = [];
   project.view.remove();
   let index = projects.indexOf(project);
   projects.splice(index, 1);
@@ -86,8 +90,7 @@ export default {
   remove,
   addTask,
   removeTask,
-  setActive,
-  getActive,
   findTask,
-  removeTask
+  setActive,
+  getActive
 }
