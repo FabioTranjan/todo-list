@@ -31,7 +31,7 @@ function updateCallback(task, params) {
   task.dueDate = params.dueDate;
   task.priority = params.priority;
   task.view.getElementsByTagName("p")[0].innerText = params.title;
-  changeExclamationColor(task.view, params.priority);
+  changeExclamationColor(task.view, task.priority);
 }
 
 function changeExclamationColor(view, priority) {
@@ -55,6 +55,10 @@ function completedCallback() {
   let taskView = this.parentNode.parentNode;
   let taskModel = ProjectModel.findTask(taskView);
   taskModel.completed = !taskModel.completed;
+  TaskView.setCompleted(taskView, taskModel.completed);
+  if (!taskModel.completed) {
+    changeExclamationColor(taskView, taskModel.priority);
+  }
   console.log(taskModel.completed);
 }
 

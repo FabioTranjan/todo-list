@@ -44,13 +44,6 @@ function create(taskName, callbacks) {
   checkboxInput.addEventListener("change", function(e) {
     e.preventDefault();
     callbacks.completed.call(this);
-    if (this.checked) {
-      taskTitle.style.textDecoration = 'line-through';
-      exclamationPanel.innerHTML = '';
-    } else {
-      taskTitle.style.textDecoration = 'none';
-      exclamationPanel.appendChild(exclamationIcon);
-    }
   });
 
   editPanel.addEventListener("click", function(e) {
@@ -66,6 +59,21 @@ function create(taskName, callbacks) {
   return block;
 }
 
+function setCompleted(view, completed) {
+  let taskTitle = view.getElementsByTagName("p")[0];
+  let exclamation = view.getElementsByClassName("panel-icon")[0];
+
+  if (completed) {
+    taskTitle.style.textDecoration = 'line-through';
+    exclamation.innerHTML = '';
+  } else {
+    taskTitle.style.textDecoration = 'none';
+    let exclamationIcon = Base.createIcon('fa-exclamation-circle');
+    exclamation.appendChild(exclamationIcon);
+  }
+}
+
 export default {
-  create
+  create,
+  setCompleted
 }
